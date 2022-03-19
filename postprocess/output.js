@@ -31,7 +31,7 @@ function generateTimeStamp(){
 }
 
 function generateStamp(){
-    return `${process.env.GOOGLE_PROJECT_ID_BUCKET}_${generateTimeStamp()}`
+    return `${process.env.GOOGLE_PROJECT_ID_BUCKET}_${generateTimeStamp()}`;
 }
 
 async function uploadToBucket(fileName, bucketName){
