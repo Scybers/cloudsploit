@@ -30,6 +30,10 @@ function generateTimeStamp(){
     return `${year}${month}${date}${hours}${minutes}`;
 }
 
+function generateStamp(){
+    return `${process.env.GOOGLE_PROJECT_ID_BUCKET}_${generateTimeStamp()}`
+}
+
 async function uploadToBucket(fileName, bucketName){
     const creds = {
         'client_email': process.env.GOOGLE_CLIENT_EMAIL_BUCKET,
@@ -41,7 +45,7 @@ async function uploadToBucket(fileName, bucketName){
         credentials: creds
     });
 
-    var modifiedFileName = fileName.replace(/(\.[\w\d_-]+)$/i, `_${generateTimeStamp()}$1`);
+    var modifiedFileName = fileName.replace(/(\.[\w\d_-]+)$/i, `_${generateStamp()}$1`);
 
     console.log(`Using Bucket ${bucketName} for uploading the file ${fileName} as ${modifiedFileName}`);
 
